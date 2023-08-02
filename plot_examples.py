@@ -37,8 +37,19 @@ def plot_hello_pid():
     df.plot(x="t", y=["sp", "pv"])
 
 
+def plot_hello_pid_array():
+    df = load_data("hello_pid_array.csv")
+    if df is None:
+        return
+
+    fig, ax = plt.subplots(3, 1, sharex=True)
+    for i in range(3):
+        df.plot(x="t", y=[f"sp{i+1}", f"pv{i+1}"], ax=ax[i])
+
+
 def main():
     plot_hello_pid()
+    plot_hello_pid_array()
     plt.show()
 
 
