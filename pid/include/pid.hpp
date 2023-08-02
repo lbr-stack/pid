@@ -18,4 +18,7 @@ public:
   // Compute manipuated variable (i.e. control output)
   double manipulated_variable(double set_point, double process_variable,
                               double time_step);
+
+  // Compute next
+  double next(double set_point, double process_variable, double time_step);
 };

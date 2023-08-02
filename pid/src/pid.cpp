@@ -31,3 +31,8 @@ double PID::manipulated_variable(double set_point, double process_variable,
 
   return manip_variable;
 }
+
+double PID::next(double set_point, double process_variable, double time_step) {
+  double mv = manipulated_variable(set_point, process_variable, time_step);
+  return process_variable + time_step * mv;
+}

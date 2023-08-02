@@ -22,11 +22,8 @@ int main() {
   std::cout << "x(0) = " << process_variable << "\n";
 
   for (unsigned int i = 0; i < n_steps; ++i) {
-    double control =
-        pid.manipulated_variable(set_point, process_variable, time_step);
-    process_variable += control * time_step;
+    process_variable = pid.next(set_point, process_variable, time_step);
     time += time_step;
-
     file << time << "," << set_point << "," << process_variable << "\n";
     std::cout << "x(" << i + 1 << ") = " << process_variable << "\n";
   }
