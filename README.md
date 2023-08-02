@@ -19,6 +19,7 @@ cmake --build .
 ```
 
 The example executables can be found in the `build/` directory.
+If you don't want to build the examples, then ensure the cmake option `PID_BUILD_EXAMPLES` is set to `OFF`.
 
 # Visualize output from examples
 
