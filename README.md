@@ -1,6 +1,7 @@
 # pid
 
-PID controller implementation in C++.
+A Proportional–Integral–Derivative controller (PID) controller implementation in C++.
+See [here](https://en.wikipedia.org/wiki/PID_controller) for more details on PID controllers.
 
 # Build
 
@@ -19,7 +20,7 @@ cmake --build .
 
 The example executables can be found in the `build/` directory.
 
-## Visualize output from examples
+# Visualize output from examples
 
 When you run each of the examples, a CSV file is written containing the data from the example.
 You can plot these by using the [plot_examples.py](plot_examples.py) script.
@@ -30,6 +31,3 @@ pip install pandas matplotlib
 ```
 
 You need to run the examples at least once in order to plot the results.
-
-
-
