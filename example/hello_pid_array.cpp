@@ -8,7 +8,7 @@ int main() {
   std::vector<double> Kp = {10., 5., 1.};
   std::vector<double> Ki = {0.1, 0.1, 0.1};
   std::vector<double> Kd = {0.01, 0.01, 0.01};
-  PIDArray pid_array(3, Kp, Ki, Kd);
+  PID::PIDArray pid_array(3, Kp, Ki, Kd);
 
   std::vector<double> set_point = {1.0, 1.0, 1.0};
   std::vector<double> process_variable = {0.2, 0.5, 0.8};

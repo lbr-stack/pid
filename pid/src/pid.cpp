@@ -1,5 +1,7 @@
 #include "pid.hpp"
 
+namespace PID {
+
 PID::PID(double proportional_gain, double integral_gain, double derivative_gain)
     : _proportional_gain(proportional_gain), _integral_gain(integral_gain),
       _derivative_gain(derivative_gain), _integral(0.0), _prev_error(0.0) {}
@@ -36,3 +38,5 @@ double PID::next(double set_point, double process_variable, double time_step) {
   double mv = manipulated_variable(set_point, process_variable, time_step);
   return process_variable + time_step * mv;
 }
+
+} // namespace PID

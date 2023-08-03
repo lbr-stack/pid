@@ -1,5 +1,7 @@
 #include <vector>
 
+namespace PID {
+
 class PID {
 
 private:
@@ -55,3 +57,5 @@ public:
                            std::vector<double> process_variable,
                            double time_step);
 };
+
+} // namespace PID
