@@ -1,5 +1,7 @@
 #include "pid.hpp"
 
+namespace PID {
+
 PIDArray::PIDArray(unsigned int n, double proportional_gain,
                    double integral_gain, double derivative_gain)
     : _n(n) {
@@ -47,3 +49,5 @@ std::vector<double> PIDArray::next(std::vector<double> set_point,
 
   return process_variable;
 }
+
+} // namespace PID
