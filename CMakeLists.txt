@@ -2,7 +2,7 @@ cmake_minimum_required(VERSION 3.0.0)
 
 project(pid)
 
-option(PID_BUILD_EXAMPLES "Build the example executables (Default ON)." ON) # TODO
+option(PID_BUILD_EXAMPLES "Build the example executables (Default ON)." ON)
 
 add_library(
   pid
