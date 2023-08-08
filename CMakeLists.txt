@@ -7,7 +7,6 @@ option(PID_BUILD_EXAMPLES "Build the example executables (Default ON)." ON)
 add_library(
   pid
   ${CMAKE_CURRENT_SOURCE_DIR}/pid/src/pid.cpp
-  ${CMAKE_CURRENT_SOURCE_DIR}/pid/src/pid_array.cpp
 )
 
 target_include_directories(

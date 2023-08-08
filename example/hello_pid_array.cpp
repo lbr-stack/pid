@@ -5,13 +5,16 @@ int main() {
 
   std::ofstream file("hello_pid_array.csv");
 
-  std::vector<double> Kp = {10., 5., 1.};
-  std::vector<double> Ki = {0.1, 0.1, 0.1};
-  std::vector<double> Kd = {0.01, 0.01, 0.01};
-  PID::PIDArray pid_array(3, Kp, Ki, Kd);
+  const double Kp[3] = {10., 5., 1.};
+  const double Ki[3] = {0.1, 0.1, 0.1};
+  const double Kd[3] = {0.01, 0.01, 0.01};
+  PID::PID pid[3];
 
-  std::vector<double> set_point = {1.0, 1.0, 1.0};
-  std::vector<double> process_variable = {0.2, 0.5, 0.8};
+  for (unsigned int i = 0; i < 3; ++i)
+    pid[i].set_gains(Kp[i], Ki[i], Kd[i]);
+
+  double set_point[3] = {1.0, 1.0, 1.0};
+  double process_variable[3] = {0.2, 0.5, 0.8};
 
   double time_step = 0.1;
   double time = 0.0;
@@ -28,12 +31,20 @@ int main() {
       file << "\n";
   }
 
-  for (unsigned int i = 0; i < n_steps; ++i) {
-    process_variable = pid_array.next(set_point, process_variable, time_step);
+  for (unsigned int t = 0; t < n_steps; ++t) {
+
+    for (unsigned int i = 0; i < 3; ++i) {
+      process_variable[i] =
+          pid[i].next(set_point[i], process_variable[i], time_step);
+    }
+
     time += time_step;
 
-    if (time > 1.)
-      set_point = {0.1, 0.4, 0.5};
+    if (time > 1.) {
+      double new_set_point[3] = {0.1, 0.4, 0.5};
+      for (unsigned i = 0; i < 3; ++i)
+        set_point[i] = new_set_point[i];
+    }
 
     file << time << ",";
     for (unsigned int i = 0; i < 3; ++i) {
