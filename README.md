@@ -6,8 +6,8 @@ See [here](https://en.wikipedia.org/wiki/PID_controller) for more details on PID
 # Build
 
 First clone the repository
-- (ssh) `git clone git@github.com:cmower/pid.git`
-- (https) `git clone https://github.com/cmower/pid.git`
+- (ssh) `git clone git@github.com:lbr-stack/pid.git`
+- (https) `git clone https://github.com/lbr-stack/pid.git`
 
 Then build library and examples using the following.
 ```
