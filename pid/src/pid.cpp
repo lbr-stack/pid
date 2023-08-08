@@ -2,41 +2,61 @@
 
 namespace PID {
 
-PID::PID(double proportional_gain, double integral_gain, double derivative_gain)
-    : _proportional_gain(proportional_gain), _integral_gain(integral_gain),
-      _derivative_gain(derivative_gain), _integral(0.0), _prev_error(0.0) {}
+PID::PID()
+    : _ready(false), _Kp(0.0), _Ki(0.0), _Kd(0.0), _intg(0.0), _prev_err(0.0) {}
+
+PID::PID(double Kp, double Ki, double Kd)
+    : _ready(true), _Kp(Kp), _Ki(Ki), _Kd(Kd), _intg(0.0), _prev_err(0.0) {}
 
 PID::~PID() {}
 
-double PID::manipulated_variable(double set_point, double process_variable,
-                                 double time_step) {
+bool PID::is_ready() { return _ready; }
 
-  // Calculate error
-  double error = set_point - process_variable;
-
-  // Proportional term
-  double P = _proportional_gain * error;
-
-  // Integral term
-  _integral += error * time_step;
-  double I = _integral_gain * _integral;
-
-  // Derivative term
-  double derivative = (error - _prev_error) / time_step;
-  double D = _derivative_gain * derivative;
-
-  // Calculate manipulated variable
-  double manip_variable = P + I + D;
-
-  // Save error to previous error
-  _prev_error = error;
-
-  return manip_variable;
+void PID::reset() {
+  _intg = 0.0;
+  _prev_err = 0.0;
 }
 
-double PID::next(double set_point, double process_variable, double time_step) {
-  double mv = manipulated_variable(set_point, process_variable, time_step);
-  return process_variable + time_step * mv;
+void PID::set_gains(double Kp, double Ki, double Kd) {
+  _Kp = Kp;
+  _Ki = Ki;
+  _Kd = Kd;
+  _ready = true;
+}
+
+double PID::mv(const double &set, const double &pv, const double &dt) {
+
+  // Check if the PID controller is ready
+  if (!_ready) {
+    std::cout << "Error: PID gains not set.\n";
+    return 0.0;
+  }
+
+  // Calculate error
+  double err = set - pv;
+
+  // Proportional term
+  double P = _Kp * err;
+
+  // Integral term
+  _intg += err * dt;
+  double I = _Ki * _intg;
+
+  // Derivative term
+  double deriv = (err - _prev_err) / dt;
+  double D = _Kd * deriv;
+
+  // Calculate manipulated variable
+  double mv = P + I + D;
+
+  // Save error to previous error
+  _prev_err = err;
+
+  return mv;
+}
+
+double PID::next(const double &set, const double &pv, const double &dt) {
+  return pv + dt * mv(set, pv, dt);
 }
 
 } // namespace PID
