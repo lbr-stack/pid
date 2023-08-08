@@ -1,6 +1,6 @@
 #include <iostream>
 
-namespace PID {
+namespace PIDControl {
 
 class PID {
 
@@ -48,4 +48,4 @@ public:
   );
 };
 
-} // namespace PID
+} // namespace PIDControl
