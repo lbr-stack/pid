@@ -1,6 +1,6 @@
 #include "pid/pid.hpp"
 
-namespace pid_control {
+namespace control {
 
 PID::PID()
     : _ready(false), _Kp(0.0), _Ki(0.0), _Kd(0.0), _intg(0.0), _prev_err(0.0) {}
@@ -59,4 +59,4 @@ double PID::next(const double &set, const double &pv, const double &dt) {
   return pv + dt * mv(set, pv, dt);
 }
 
-} // namespace pid_control
+} // namespace control

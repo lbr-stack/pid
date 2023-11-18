@@ -2,7 +2,7 @@
 
 #include <iostream>
 
-namespace pid_control {
+namespace control {
 
 class PID {
 
@@ -50,4 +50,4 @@ public:
   );
 };
 
-} // namespace pid_control
+} // namespace control
