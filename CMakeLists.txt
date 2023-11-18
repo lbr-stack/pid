@@ -4,8 +4,7 @@ project(pid)
 
 option(PID_BUILD_EXAMPLES "Build the example executables (Default ON)." ON)
 
-add_library(
-  pid
+add_library(pid SHARED
   ${CMAKE_CURRENT_SOURCE_DIR}/src/pid.cpp
 )
 
