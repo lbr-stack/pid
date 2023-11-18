@@ -1,12 +1,13 @@
-#include "pid.hpp"
 #include <fstream>
 #include <iostream>
+
+#include "pid/pid.hpp"
 
 int main() {
 
   std::ofstream file("hello_pid.csv");
 
-  PIDControl::PID pid(4., 0.01, 0.1);
+  pid_control::PID pid(4., 0.01, 0.1);
 
   double set_point = 1.0;
   double process_variable = 0.2;

@@ -1,5 +1,6 @@
-#include "pid.hpp"
 #include <fstream>
+
+#include "pid/pid.hpp"
 
 int main() {
 
@@ -8,7 +9,7 @@ int main() {
   const double Kp[3] = {10., 5., 1.};
   const double Ki[3] = {0.1, 0.1, 0.1};
   const double Kd[3] = {0.01, 0.01, 0.01};
-  PIDControl::PID pid[3];
+  pid_control::PID pid[3];
 
   for (unsigned int i = 0; i < 3; ++i)
     pid[i].set_gains(Kp[i], Ki[i], Kd[i]);

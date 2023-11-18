@@ -1,6 +1,8 @@
+#pragma once
+
 #include <iostream>
 
-namespace PIDControl {
+namespace pid_control {
 
 class PID {
 
@@ -48,4 +50,4 @@ public:
   );
 };
 
-} // namespace PIDControl
+} // namespace pid_control
